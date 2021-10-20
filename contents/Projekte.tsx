@@ -120,13 +120,26 @@ export default class Projekte extends PageContent {
         );
 
         const code = (
-            <a
-                rel="noreferrer"
-                target="_blank"
-                href="https://github.com/andifeu/cv-booklet/tree/master"
-            >
-                Github
-            </a>
+            <ul className={this.css['code-links']}>
+                <li>
+                    <a
+                        rel="noreferrer"
+                        target="_blank"
+                        href="https://github.com/andifeu/cv-book-ts"
+                    >
+                        Github: Typescript/Next.js Version
+                    </a>
+                </li>
+                <li>
+                    <a
+                        rel="noreferrer"
+                        target="_blank"
+                        href="https://github.com/andifeu/cv-booklet/tree/master"
+                    >
+                        Github: Javascript/React Version
+                    </a>
+                </li>
+            </ul>
         );
 
         const demo = (

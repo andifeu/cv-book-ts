@@ -141,6 +141,11 @@
     margin-top: 5%;
 }
 
+.code-links {
+    margin-top: 0;
+    padding-left: 0;
+}
+
 /**************** Ausbildung ****************/
 
 .tasks {
