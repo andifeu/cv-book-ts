@@ -1,0 +1,132 @@
+{
+    "pages": [
+        {
+            "id": "about",
+            "headline": "About",
+            "page": "About",
+            "url": ""
+        },
+        {
+            "id": "kompetenzen",
+            "part": 1,
+            "headline": "Kompetenzen",
+            "page": "Kompetenzen",
+            "url": "kompetenzen"
+        },
+        {
+            "id": "kompetenzen--2",
+            "part": 2,
+            "page": "Kompetenzen",
+            "url": "kompetenzen"
+        },
+        {
+            "id": "projekte",
+            "headline": "Projekte",
+            "page": "Projekte",
+            "url": "projekte",
+            "part": 1
+        },
+        {
+            "id": "projekte",
+            "headline": "Projekte",
+            "page": "Projekte",
+            "url": "projekte",
+            "part": 2
+        },
+        {
+            "id": "projekte",
+            "headline": "Projekte",
+            "page": "Projekte",
+            "url": "projekte",
+            "part": 3
+        },
+        {
+            "id": "projekte",
+            "headline": "Projekte",
+            "page": "Projekte",
+            "url": "projekte",
+            "part": 4
+        },
+        {
+            "id": "career",
+            "headline": "Beruflicher Werdegang",
+            "page": "Career",
+            "url": "werdegang",
+            "part": 1
+        },
+        {
+            "id": "career",
+            "page": "Career",
+            "url": "werdegang",
+            "part": 2
+        },
+        {
+            "id": "ausbildung",
+            "headline": "Ausbildung",
+            "page": "Ausbildung",
+            "url": "ausbildung"
+        },
+        {
+            "id": "kontakt",
+            "headline": "Kontakt",
+            "page": "Kontakt",
+            "url": "kontakt"
+        }
+    ],
+    "career": [
+        {
+            "id": "freelance",
+            "period": "Seit September 2015",
+            "title": "Freiberuflicher Webentwickler",
+            "location": "Aitrach / München",
+            "description": "Javascript-/PHP-Backend- sowie Frontendentwicklung",
+            "technologies": ["Javascript", "PHP", "HTML5", "CSS3"],
+            "part": 1
+        },
+        {
+            "id": "gido",
+            "period": "Oktober 2014 – August 2015",
+            "title": "Webentwickler - gido Deutschland GmbH",
+            "location": "München",
+            "description": "Entwicklung einer Datenbank geographischer Produktangaben sowie einer Google Maps Karte aller Weinanbaugebiete",
+            "technologies": ["PHP", "Javascript", "HTML5", "CSS3"],
+            "bgImage": "gido.png",
+            "part": 1
+        },
+        {
+            "id": "check24",
+            "period": "April 2014 – Oktober 2014",
+            "title": "Webentwickler - Check24 Vergleichsportal GmbH",
+            "location": "München",
+            "description": "Fullstackentwickler für Check24 Backoffice System",
+            "technologies": ["PHP - Zend2", "Javascript ExtJS"],
+            "bgImage": "check24.png",
+            "part": 1
+        },
+        {
+            "id": "newego",
+            "period": "Februar 2011 – April 2014",
+            "title": "Webentwickler - NEW.EGO GmbH",
+            "location": "München",
+            "description": "Fullstackentwicklung in zahlreichen Projekten",
+            "technologies": ["PHP", "jQuery", "HTML", "CSS"],
+            "bgImage": "newego.png",
+            "part": 2
+        },
+        {
+            "id": "avira",
+            "period": "Juli 2008 – August 2009",
+            "title": "Malwareanalytiker: Avira GmbH",
+            "location": "Tettnang",
+            "description": [
+                "Analyse und Replikation von Malware",
+                "Entwicklung und Pflege von Analyse-Anwendungen (C++, Scripte)",
+                "Hilfestellung bei Malware-Problemen der Avira-Kunden",
+                "Analyse von Botnetzen und weltweiter Cyberkriminalität"
+            ],
+            "technologies": ["C++", "Scriptsprachen"],
+            "bgImage": "avira.png",
+            "part": 2
+        }
+    ]
+}

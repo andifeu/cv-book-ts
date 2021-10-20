@@ -1,0 +1,9 @@
+.page {
+    width: 50%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform-origin: 0% 0%;
+    position: absolute;
+    height: 100%;
+    right: 0;
+}

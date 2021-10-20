@@ -1,0 +1,52 @@
+.book-pages {
+    width: 100%;
+    position: relative;
+    grid-template-columns: 1fr 1 fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    height: 100%;
+}
+
+.contents,
+.back {
+    width: calc(50% - 0.5vw);
+    margin-top: 0.7vh;
+    margin-bottom: 0.7vh;
+    background-image: url('/images/content-bg.jpg');
+}
+
+.contents {
+    font-family: var(--title);
+    color: var(--body-bg-color);
+    margin-left: 0.5vw;
+    padding: 0 calc(var(--baseline) * 3);
+    background-size: 200%;
+    background-position: 0 100%;
+}
+
+.contents a {
+    color: var(--contents-color);
+}
+
+.back {
+    background-size: 250%;
+    background-position: 0 0%;
+    margin-right: 0.5vw;
+}
+
+.title {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    text-align: center;
+    position: absolute;
+    width: 50%;
+    left: 0;
+    background: linear-gradient(to bottom, black 50%, transparent 100%);
+    margin: 0;
+    color: var(--title-color);
+    padding-top: 3%;
+    padding-bottom: 11%;
+}
+
+.index {
+    margin-top: 100%;
+}

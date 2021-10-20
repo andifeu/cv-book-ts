@@ -1,0 +1,63 @@
+.card-widget {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.card {
+    position: relative;
+    width: 95%;
+    height: 95%;
+    margin: auto;
+}
+
+
+.card .image {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    background-size: cover;
+    background-position-y: center;
+    top: 10%;
+    left: 5%;
+}
+
+.card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1.5em solid #fff;
+    z-index: 1;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow: 0.5em 0.5em 1.5em #bdbdbd;
+    background: transparent;
+}
+
+.card-widget svg {
+    width: 0;
+    height: 0;
+}
+
+.card .info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 50px 30px 30px 30px;
+    transform: translate(10px, 10px);
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    line-height: 1.4;
+    font-size: 20px;
+    opacity: 0;
+    transition-duration: 1s;
+}
+
+.card:hover .info {
+    opacity: 1;
+}

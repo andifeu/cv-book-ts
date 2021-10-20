@@ -1,0 +1,29 @@
+ul.leaders {
+    padding: 0;
+    overflow-x: hidden;
+    list-style: none;
+    white-space: nowrap;
+}
+
+ul.leaders li {
+    display: flex;
+    padding-bottom: 4%;
+}
+
+ul.leaders a {
+    margin-right: auto;
+    overflow-x: hidden;
+}
+
+ul.leaders li a:after {
+    white-space: nowrap;
+    content: '. . . . . . . . . . . . . . . . . . . . '
+        '. . . . . . . . . . . . . . . . . . . . '
+        '. . . . . . . . . . . . . . . . . . . . '
+        '. . . . . . . . . . . . . . . . . . . . ';
+}
+
+ul.leaders span + span {
+    float: right;
+    padding-left: 0.33em;
+}
