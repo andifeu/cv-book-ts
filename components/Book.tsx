@@ -113,7 +113,6 @@ class Book extends React.Component<Props> {
 
     componentDidMount() {
         const currentPath = this.props.router.asPath;
-        console.log('componentDidMount');
         document.addEventListener('wheel', this.mousewheelHandler.bind(this));
 
         setMenuVisibility(this.props.menuRef.current!, currentPath);
