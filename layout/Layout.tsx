@@ -5,6 +5,7 @@ import React, { SyntheticEvent, useContext, useEffect, useRef } from 'react';
 import Book from '../components/Book';
 import Layer from '../components/Layer';
 import ImageContext from '../context/ImageContext';
+import AnimationHelper from '../helpers/AnimationHelper';
 
 import css from '/styles/Layout.module.css';
 
@@ -23,119 +24,9 @@ export default function Layout() {
         router.push('/');
     }
 
-    function zoomIn(scene: HTMLDivElement, animationFinished: () => void) {
-        const table = scene.getElementsByClassName('table')[0] as HTMLDivElement;
-        const room = scene.getElementsByClassName('room')[0] as HTMLDivElement;
-
-        const animationOptions: KeyframeAnimationOptions = {
-            duration: 500,
-            fill: 'forwards'
-        };
-
-        room.animate([
-            {
-                transform: 'scale(1) rotateX(0)',
-                top: 0
-            },
-            {
-                transform: 'scale(1.9)',
-                top: 0
-            }
-        ], animationOptions);
-
-        table.animate([
-            {
-                top: '33vh',
-                transform: 'scale(0.4) rotateX(45deg)'
-            },
-            {
-                top: '33vh',
-                transform: 'scale(1) rotateX(45deg)'
-            }
-        ], animationOptions).addEventListener('finish', () => {
-            table.animate([
-                {
-                    top: '33vh',
-                    transform: 'rotateX(45deg)'
-                },{
-                    top: 0,
-                    transform: 'rotateX(0)'
-                }
-            ], animationOptions);
-
-            room.animate([
-                {
-                    top: 0,
-                    transform: 'scale(1.9) rotateX(0)'
-                },{
-                    top: '-33vh',
-                    transform: 'scale(1.9) rotateX(-40deg)'
-                }
-            ], animationOptions).addEventListener('finish', () => {
-                animationFinished();
-            });
-        });
-    }
-
-    function zoomOut(scene: HTMLDivElement, animationFinished: () => void) {
-        const table = scene.getElementsByClassName('table')[0] as HTMLDivElement;
-        const room = scene.getElementsByClassName('room')[0] as HTMLDivElement;
-        
-        const animationOptions: KeyframeAnimationOptions = {
-            duration: 500,
-            fill: 'forwards'
-        };
-
-        room.animate([
-            {
-                top: '-33vh',
-                transform: 'scale(1.9) rotateX(-40deg)'
-            },
-            {
-                top: 0,
-                transform: 'scale(1.9) rotateX(0)'
-            }
-        ], animationOptions);
-
-        table.animate([
-            {
-                top: 0,
-                transform: 'rotateX(0)'
-            },{
-                top: '33vh',
-                transform: 'rotateX(45deg)'
-            }
-        ], animationOptions).addEventListener('finish', () => {
-            table.animate([
-                {
-                    top: '33vh',
-                    transform: 'scale(1) rotateX(45deg)'
-                },
-                {
-                    top: '33vh',
-                    transform: 'scale(0.4) rotateX(45deg)'
-                }
-            ], animationOptions);
-
-            room.animate([
-                {
-                    transform: 'scale(1.9)',
-                    top: 0
-                },
-                {
-                    transform: 'scale(1) rotateX(0)',
-                    top: 0
-                }
-            ], animationOptions).addEventListener('finish', () => {
-                animationFinished();
-            });
-        });
-    }
 
     function tableClickHandler() {
         const scene = sceneRef.current!;
-        
-
         if (!scene || scene.classList.contains('animation-running')) {
             return;
         }
@@ -146,17 +37,16 @@ export default function Layout() {
 
         scene.classList.add('animation-running');
         if (sceneRef.current.classList.contains('shown')) {
-            zoomIn(scene, () => {
+            AnimationHelper.zoomIn(scene, () => {
                 scene.classList.remove('animation-running');
                 scene.classList.remove('shown');
             });
         } else {
-            zoomOut(scene, () => {
+            AnimationHelper.zoomOut(scene, () => {
                 scene.classList.remove('animation-running');
                 scene.classList.add('shown');
             });
         }
-
     }
 
 
@@ -169,6 +59,20 @@ export default function Layout() {
         // const image = loadEvent.target;
         // image.style.maxHeight = image.naturalHeight + "px";
         // image.style.maxWidth = image.naturalWidth + "px";
+        const scene = sceneRef.current!;
+        if (!scene.classList.contains('shown')) {
+            AnimationHelper.zoomOut(scene, () => {
+                scene.classList.add('shown');
+                AnimationHelper.zoomIntoPicture(scene, () => {
+                    scene.classList.add('picture-shown');
+                });
+            });
+        } else {
+            AnimationHelper.zoomIntoPicture(scene, () => {
+                scene.classList.add('picture-shown');
+            });
+        }
+
     }
 
     return (

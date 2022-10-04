@@ -64,12 +64,12 @@ body {
 
 .scene {
     perspective: 4000px;
+    position: relative;
 }
 
 .room {
     height: 100vh;
     display: flex;
-    /* overflow: hidden; */
     background-color: var(--body-bg-color);
     background-image: url('/images/box-bg.jpg');
     background-size: cover;
@@ -84,110 +84,11 @@ body {
     transform: scale(0.4) rotateX(45deg);
 }
 
-/* .scene .room {
-    animation-duration: var(--zoom-time);
-    animation-fill-mode: forwards;
-} */
-
 .scene .table {
-    /* animation-duration: var(--zoom-time);
-    animation-fill-mode: forwards; */
     overflow: visible;
     position: absolute;
 }
 
-/* .scene:not(.shown) .table {
-    animation-name: book-zoom-in;
-}
-
-.scene.shown .table {
-    animation-name: book-zoom-out;
-}
-
-.scene:not(.shown) .table.focus {
-    animation-name: book-focus-in;
-} */
-
-/* .scene:not(.shown) .table.focusout {
-    animation-name: book-focus-out;
-} */
-
-/* @keyframes book-zoom-in {
-    from {
-        top: 33vh;
-        transform: scale(0.4) rotateX(45deg);
-    }
-    to {
-        top: 33vh;
-        transform: scale(1) rotateX(45deg);
-    }
-}
-
-@keyframes book-zoom-out {
-    from {
-        transform: scale(1) rotateX(45deg);
-        top: 33vh;
-    }
-    to {
-        top: 33vh;
-        transform: scale(0.4) rotateX(45deg);
-    }
-}
-
-@keyframes book-focus-in {
-    from {
-        top: 33vh;
-        transform: rotateX(45deg);
-    }
-    to {
-        top: 0;
-        transform: rotateX(0);
-    }
-}
-
-@keyframes book-focus-out {
-    from {
-        top: 0;
-        transform: rotateX(45deg);
-    }
-    to {
-        top: 33vh;
-        transform: rotateX(45deg);
-    }
-}
-
-
-@keyframes room-focus-in {
-    from {
-        transform: scale(1.9) rotateX(0);
-    }
-    to {
-        transform: rotateX(0) rotateX(-45deg);
-    }
-}
-
-@keyframes room-zoom-in {
-    from {
-        transform: scale(1) rotateX(0);
-        top: 0;
-    }
-    to {
-        transform: scale(1.9);
-        top: 0;
-    }
-}
-*/
-
-/* @keyframes room-zoom-out {
-    from {
-        transform: scale(1.9);
-        top: 0;
-    }
-    to {
-        transform: scale(1) rotateX(0);
-        top: 0;
-    }
-} */
 
 .table {
     margin: 0;
@@ -218,20 +119,6 @@ h2 {
 a {
     text-decoration: none;
 }
-
-/* #__next {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    justify-content: center;
-    align-content: center;
-    height: calc(var(--book-width) - var(--book-width) * 0.2);
-    width: var(--book-width);
-    max-width: var(--max-book-width);
-    max-height: var(--max-book-height);
-    vertical-align: middle;
-} */
 
 .book {
     transform: translateX(0);
