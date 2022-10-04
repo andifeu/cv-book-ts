@@ -11,10 +11,10 @@ import css from '/styles/Layout.module.css';
 export default function Layout() {
     const menuRef = useRef<HTMLDivElement>(null);
     const sceneRef = useRef<HTMLDivElement>(null);
+    const tableRef = useRef<HTMLDivElement>(null);
     const imageContext = useContext(ImageContext);
     const router = useRouter();
     const imageUrl = imageContext.getName();
-    let sceneDom: HTMLDivElement;
 
     let perspectiveClass = 'book';
     let visibility = 'hide';
@@ -23,21 +23,142 @@ export default function Layout() {
         router.push('/');
     }
 
+    function zoomIn(scene: HTMLDivElement, animationFinished: () => void) {
+        const table = scene.getElementsByClassName('table')[0] as HTMLDivElement;
+        const room = scene.getElementsByClassName('room')[0] as HTMLDivElement;
+
+        const animationOptions: KeyframeAnimationOptions = {
+            duration: 500,
+            fill: 'forwards'
+        };
+
+        room.animate([
+            {
+                transform: 'scale(1) rotateX(0)',
+                top: 0
+            },
+            {
+                transform: 'scale(1.9)',
+                top: 0
+            }
+        ], animationOptions);
+
+        table.animate([
+            {
+                top: '33vh',
+                transform: 'scale(0.4) rotateX(45deg)'
+            },
+            {
+                top: '33vh',
+                transform: 'scale(1) rotateX(45deg)'
+            }
+        ], animationOptions).addEventListener('finish', () => {
+            table.animate([
+                {
+                    top: '33vh',
+                    transform: 'rotateX(45deg)'
+                },{
+                    top: 0,
+                    transform: 'rotateX(0)'
+                }
+            ], animationOptions);
+
+            room.animate([
+                {
+                    top: 0,
+                    transform: 'scale(1.9) rotateX(0)'
+                },{
+                    top: '-33vh',
+                    transform: 'scale(1.9) rotateX(-40deg)'
+                }
+            ], animationOptions).addEventListener('finish', () => {
+                animationFinished();
+            });
+        });
+    }
+
+    function zoomOut(scene: HTMLDivElement, animationFinished: () => void) {
+        const table = scene.getElementsByClassName('table')[0] as HTMLDivElement;
+        const room = scene.getElementsByClassName('room')[0] as HTMLDivElement;
+        
+        const animationOptions: KeyframeAnimationOptions = {
+            duration: 500,
+            fill: 'forwards'
+        };
+
+        room.animate([
+            {
+                top: '-33vh',
+                transform: 'scale(1.9) rotateX(-40deg)'
+            },
+            {
+                top: 0,
+                transform: 'scale(1.9) rotateX(0)'
+            }
+        ], animationOptions);
+
+        table.animate([
+            {
+                top: 0,
+                transform: 'rotateX(0)'
+            },{
+                top: '33vh',
+                transform: 'rotateX(45deg)'
+            }
+        ], animationOptions).addEventListener('finish', () => {
+            table.animate([
+                {
+                    top: '33vh',
+                    transform: 'scale(1) rotateX(45deg)'
+                },
+                {
+                    top: '33vh',
+                    transform: 'scale(0.4) rotateX(45deg)'
+                }
+            ], animationOptions);
+
+            room.animate([
+                {
+                    transform: 'scale(1.9)',
+                    top: 0
+                },
+                {
+                    transform: 'scale(1) rotateX(0)',
+                    top: 0
+                }
+            ], animationOptions).addEventListener('finish', () => {
+                animationFinished();
+            });
+        });
+    }
+
     function tableClickHandler() {
-        if (!sceneRef.current) {
+        const scene = sceneRef.current!;
+        
+
+        if (!scene || scene.classList.contains('animation-running')) {
             return;
         }
+
         if (sceneRef.current.classList.contains('preload')) {
             sceneRef.current.classList.remove('preload');
         }
-        sceneRef.current.classList.toggle('shown');
+
+        scene.classList.add('animation-running');
+        if (sceneRef.current.classList.contains('shown')) {
+            zoomIn(scene, () => {
+                scene.classList.remove('animation-running');
+                scene.classList.remove('shown');
+            });
+        } else {
+            zoomOut(scene, () => {
+                scene.classList.remove('animation-running');
+                scene.classList.add('shown');
+            });
+        }
+
     }
 
-    useEffect(() => {
-        sceneRef.current?.addEventListener('animationend', event => {
-            console.log('animation ended');
-        });
-    }, []);
 
     if (imageContext.isVisible()) {
         perspectiveClass = 'book image-shown';
@@ -53,7 +174,7 @@ export default function Layout() {
     return (
         <div ref={sceneRef} className="scene preload shown">
             <div className="room"></div>
-            <div className="table" onClick={tableClickHandler}>
+            <div ref={tableRef} className="table" onClick={tableClickHandler}>
                 <div className={css['book-container']}>
                     <Head>
                         <title>Curriculum Vitae</title>
